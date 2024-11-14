@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest  # Використовуємо PostgreSQL
+    container_name: university_db  # Ім'я контейнера
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: university
+    ports:
+      - "5432:5432"  # Прокидання порту 5432
+    volumes:
+      - db_data:/var/lib/postgresql/data  # Зберігання даних
+
+  pgadmin:
+    image: dpage/pgadmin4  # Використовуємо pgAdmin
+    container_name: university_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"  # Прокидання порту 8080 для доступу до pgAdmin через браузер
+
+volumes:
+  db_data:  # Зберігання даних БД на локальному диску
+
